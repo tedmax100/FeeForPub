@@ -57,7 +57,7 @@ ICheckInFee ..> Customer : use >
     - Assert
         - excepted: 300$
 
-- 給定入場人數, 驗證收費總額,  當日為周五
+- 給定入場人數, 驗證收費總額,  當日為非周四
     - Arrange
         - 入場客戶為3男2女
         - 當日為周五
