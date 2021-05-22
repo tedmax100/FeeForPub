@@ -35,6 +35,12 @@ namespace FeeForPub
 
             foreach (var customer in customers)
             {
+                var inCome = this._checkInFee.GetFee(customer);
+                if (inCome <= 0) continue;
+                _inCome += inCome;
+                result++;
+
+                /*
                 var isFemale = !customer.IsMale;
 
                 //女生免費入場
@@ -49,6 +55,7 @@ namespace FeeForPub
 
                     result++;
                 }
+                */
             }
 
             //for stub, validate return value

@@ -7,7 +7,9 @@
 如果是**女生**，則**免費**入場。
 若為**男生**，則根據 **ICheckInFee** 介面來取得門票的費用，
 並累計到 **inCome** 中。
-透過 **GetInCome**() 方法取得這一次的門票收入總金額
+透過 **GetInCome**() 方法取得這一次的門票收入總金額   
+====  
+女生改成**每周4**, 為Ladie's Night, **當日免費入場**; 其餘日子都要收費
 
 
 ```plantuml
@@ -53,6 +55,28 @@ ICheckInFee ..> Customer : use >
         - 門票收費為100$
     - Act
         - CheckIn(客戶們)
-      - 收費總額 := GetInCome()
+        - 收費總額 := GetInCome()
     - Assert
         - excepted: 300$
+
+- 給定入場人數, 驗證收費總額,  當日為周五
+    - Arrange
+        - 入場客戶為3男2女
+        - 當日為周五
+        - 男生收費100$; 女生收費50$
+    - Act
+        - CheckIn(客戶們)
+        - 收費總額 := GetInCome()
+    - Assert
+        - excepted: 400$
+- 給定入場人數, 驗證收費總額,  當日為周四
+    - Arrange
+        - 入場客戶為3男2女
+        - 當日為周四
+        - 男生收費100$; 女生收費0$
+    - Act
+        - CheckIn(客戶們)
+        - 收費總額 := GetInCome()
+    - Assert
+        - excepted: 300$
+    
